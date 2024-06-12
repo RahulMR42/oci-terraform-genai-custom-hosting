@@ -39,6 +39,7 @@ terraform.rc
 *.dll
 *.exe
 .DS_Store
+*.lock.hcl
 bin/
 modules-dev/
 /pkg/

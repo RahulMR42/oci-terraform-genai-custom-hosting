@@ -45,13 +45,13 @@ data "oci_objectstorage_namespace" "ns" {
 data "template_file" "bootstrap" {
   template = file("${path.module}/cloud-init/bootstrap")
 }
-data "oci_core_images" "InstanceImageOCID" {
+data "oci_core_images" "gpuInstanceImageOCID" {
   compartment_id           = var.compartment_ocid
   operating_system         = var.instance_os
   operating_system_version = var.linux_os_version
 
-  filter{
-    name = "display_name"
+  filter {
+    name   = "display_name"
     values = [var.gpu_os_version]
     regex  = true
 

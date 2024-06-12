@@ -1,0 +1,11 @@
+[Unit]
+Description=Service to start llamacpp-Server - ${llamacpp_service_name}
+[Service]
+Type=simple
+Restart=always
+RestartSec=2
+WorkingDirectory=${PWD}
+ExecStart=bash bash.sh
+User=opc
+[Install]
+WantedBy=multi-user.target

@@ -65,8 +65,8 @@ resource "oci_core_security_list" "sl" {
   }
 
   ingress_security_rules {
-    protocol = "6"
-    source   = "0.0.0.0/0"
+    protocol    = "6"
+    source      = "0.0.0.0/0"
     description = "Port for Default inferencing mode"
 
     tcp_options {
@@ -86,8 +86,8 @@ resource "oci_core_security_list" "sl" {
   }
 
   ingress_security_rules {
-    protocol = "6"
-    source   = "0.0.0.0/0"
+    protocol    = "6"
+    source      = "0.0.0.0/0"
     description = "Port for Inferencing"
 
     tcp_options {
@@ -96,8 +96,8 @@ resource "oci_core_security_list" "sl" {
     }
   }
   ingress_security_rules {
-    protocol = "6"
-    source   = "0.0.0.0/0"
+    protocol    = "6"
+    source      = "0.0.0.0/0"
     description = "Port for Ray cluster"
 
     tcp_options {
