@@ -45,6 +45,7 @@ data "oci_objectstorage_namespace" "ns" {
 data "template_file" "bootstrap" {
   template = file("${path.module}/cloud-init/bootstrap")
 }
+#Image for GPU
 data "oci_core_images" "gpuInstanceImageOCID" {
   compartment_id           = var.compartment_ocid
   operating_system         = var.instance_os
@@ -58,6 +59,15 @@ data "oci_core_images" "gpuInstanceImageOCID" {
   }
 
   #shape      = var.instance_shape
+  sort_by    = "TIMECREATED"
+  sort_order = "DESC"
+}
+#Image for Arm CPU Instance
+data "oci_core_images" "A1InstanceImageOCID" {
+  compartment_id           = var.compartment_ocid
+  operating_system         = var.instance_os
+  operating_system_version = var.linux_os_version
+  shape      = var.arm_instance_shape
   sort_by    = "TIMECREATED"
   sort_order = "DESC"
 }

@@ -1,4 +1,7 @@
 #!/bin/bash
+## Copyright (c) 2024, Oracle and/or its affiliates.
+## All rights reserved. The Universal Permissive License (UPL), Version 1.0 as shown at http://oss.oracle.com/licenses/upl
+set -e
 #Variables
 llm_user="opc"
 init_log_folder="logs"
@@ -15,4 +18,4 @@ sudo /usr/libexec/oci-growfs -y
 lsblk
 df -h
 ${pip_version} install virtualenv uv
-mkdir llm_store
+

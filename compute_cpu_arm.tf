@@ -28,7 +28,7 @@ resource "oci_core_instance" "cpu_arm_hosts" {
   source_details {
     boot_volume_size_in_gbs = var.arm_boot_volume_size_in_gbs
     boot_volume_vpus_per_gb = var.arm_boot_volume_vpus_per_gb
-    source_id               = "ocid1.image.oc1.ca-montreal-1.aaaaaaaapqpxuooafczfkrdomqlnkkxuizjhnfdesvwg7a6tpeht4epptj5q"
+    source_id               = data.oci_core_images.A1InstanceImageOCID.images[0].id
     source_type             = "image"
   }
   #-ENV Setup
@@ -44,6 +44,7 @@ resource "oci_core_instance" "cpu_arm_hosts" {
     inline = [
       "mkdir ${var.base_folder}",
       "mkdir ${var.base_folder}/logs",
+      "mkdir ${var.base_folder}/llm_store"
     ]
     connection {
       private_key = tls_private_key.tls_private_key.private_key_pem
@@ -65,6 +66,8 @@ resource "oci_core_instance" "cpu_arm_hosts" {
   #Executing base script
   provisioner "remote-exec" {
     inline = [
+      "rm -rf ${var.base_folder}/scripts/vllm",
+      "rm -rf ${var.base_folder}/scripts/intel_x86",
       "bash ${var.base_folder}/scripts/script_base.sh >>${var.base_folder}/logs/init_log.log"
     ]
     connection {

@@ -1,6 +1,7 @@
 #!/bin/bash
 ## Copyright (c) 2024, Oracle and/or its affiliates.
 ## All rights reserved. The Universal Permissive License (UPL), Version 1.0 as shown at http://oss.oracle.com/licenses/upl
+set -e
 print_log() {
   echo "[$(date)] [$1] - $2"
   if [ ${1} == "Error" ] ;then
@@ -27,7 +28,7 @@ hf_action(){
     print_log "Info" "Starting HF model download"
     huggingface-cli login --token ${llamacpp_hf_token}
     if [ "${llamacpp_download_llm}" == "YES" ] ;then
-        huggingface-cli download ${llamacpp_model_hf_path} --local-dir ${llamacpp_llm_path}/${llamacpp_mode_alias}
+        huggingface-cli download ${llamacpp_model_hf_path} ${llamacpp_absolute_gguf} --local-dir ${llamacpp_llm_path}/${llamacpp_mode_alias}
     fi
     print_log "Info" "End of HF actions"
 
